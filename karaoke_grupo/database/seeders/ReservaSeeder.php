@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Playlist;
 use App\Models\Reserva;
 
 class ReservaSeeder extends Seeder
@@ -12,6 +13,10 @@ class ReservaSeeder extends Seeder
      */
     public function run(): void
     {
-        Reserva::factory()->count(6)->create();
+        foreach (Playlist::All() as $playlist) {
+            Reserva::factory()->create([
+                'playlist_id' => $playlist->id,
+            ]);
+        }
     }
 }

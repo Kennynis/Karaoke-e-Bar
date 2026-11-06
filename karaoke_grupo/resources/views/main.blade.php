@@ -48,9 +48,14 @@
     </main>
 
     <footer class="rodape text-center">
-        <div class="d-flex justify-content-center gap-4 py-4">
+        <div class="d-flex justify-content-center flex-wrap gap-4 py-4 px-3">
             <a href="{{ url('/') }}">Início</a>
             <a href="{{ url('sala') }}">Salas</a>
+            <a href="{{ url('reserva') }}">Reservas</a>
+            <a href="{{ url('playlist') }}">Playlists</a>
+            <a href="{{ url('produto') }}">Produtos</a>
+            <a href="{{ url('compra') }}">Compras</a>
+            <a href="{{ url('usuario') }}">Usuários</a>
         </div>
         <div class="rodape-copia">© 2026 Karaokê &amp; Bar. Todos os direitos reservados.</div>
     </footer>

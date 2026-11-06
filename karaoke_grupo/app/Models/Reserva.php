@@ -14,7 +14,6 @@ class Reserva extends Model
         'sala_id',
         'usuario_id',
         'playlist_id',
-        'playlist_link',
         'data_reserva',
         'horario_inicio',
         'horario_fim',

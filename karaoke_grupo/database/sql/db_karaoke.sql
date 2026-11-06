@@ -16,64 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `db_karaoke`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `db_karaoke` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `db_karaoke`;
-
---
--- Table structure for table `cache`
---
-
-DROP TABLE IF EXISTS `cache`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cache` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` bigint NOT NULL,
-  PRIMARY KEY (`key`),
-  KEY `cache_expiration_index` (`expiration`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cache`
---
-
-LOCK TABLES `cache` WRITE;
-/*!40000 ALTER TABLE `cache` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cache` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cache_locks`
---
-
-DROP TABLE IF EXISTS `cache_locks`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cache_locks` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` bigint NOT NULL,
-  PRIMARY KEY (`key`),
-  KEY `cache_locks_expiration_index` (`expiration`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cache_locks`
---
-
-LOCK TABLES `cache_locks` WRITE;
-/*!40000 ALTER TABLE `cache_locks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cache_locks` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `compras`
 --
 
@@ -90,7 +32,7 @@ CREATE TABLE `compras` (
   PRIMARY KEY (`id`),
   KEY `compras_usuario_id_foreign` (`usuario_id`),
   CONSTRAINT `compras_usuario_id_foreign` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +99,7 @@ CREATE TABLE `item_compras` (
   KEY `item_compras_produto_id_foreign` (`produto_id`),
   CONSTRAINT `item_compras_compra_id_foreign` FOREIGN KEY (`compra_id`) REFERENCES `compras` (`id`) ON DELETE CASCADE,
   CONSTRAINT `item_compras_produto_id_foreign` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,7 +238,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -317,6 +259,9 @@ INSERT INTO `migrations` VALUES (9,'2026_11_05_165206_create_item_reservas_table
 INSERT INTO `migrations` VALUES (10,'2026_11_05_165207_create_pagamentos_table',1);
 INSERT INTO `migrations` VALUES (11,'2026_11_05_165208_create_compras_table',1);
 INSERT INTO `migrations` VALUES (12,'2026_11_05_165209_create_item_compras_table',1);
+INSERT INTO `migrations` VALUES (16,'2026_11_06_170001_add_imagem_to_produtos_table',2);
+INSERT INTO `migrations` VALUES (17,'2026_11_06_170002_add_capa_to_playlists_table',2);
+INSERT INTO `migrations` VALUES (18,'2026_11_06_170003_update_playlist_on_reservas_table',2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,10 +339,11 @@ CREATE TABLE `playlists` (
   `nome` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
   `genero` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `link` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `capa` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,12 +352,12 @@ CREATE TABLE `playlists` (
 
 LOCK TABLES `playlists` WRITE;
 /*!40000 ALTER TABLE `playlists` DISABLE KEYS */;
-INSERT INTO `playlists` VALUES (1,'Clássicos do Pop','Pop','http://pereira.com.br/consectetur-consequuntur-quibusdam-velit-temporibus-reprehenderit-ex-molestiae','2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `playlists` VALUES (2,'Clássicos do Sertanejo','Sertanejo','http://www.marinho.com.br/animi-similique-voluptas-explicabo-error-ea-id','2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `playlists` VALUES (3,'Clássicos do Pagode','Pagode','http://beltrao.com.br/temporibus-provident-est-aliquam-enim-veritatis-architecto-quod','2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `playlists` VALUES (4,'Clássicos do Rock','Rock','https://www.galindo.com/aliquam-sequi-laudantium-quas-ullam-expedita-quia-vero','2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `playlists` VALUES (5,'Clássicos do MPB','MPB','http://www.serra.com.br/enim-expedita-asperiores-soluta-fugit-dolore-quasi','2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `playlists` VALUES (6,'Clássicos do Metal','Metal','http://dearruda.org/','2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `playlists` VALUES (1,'Clássicos do Pop','Pop','http://pereira.com.br/consectetur-consequuntur-quibusdam-velit-temporibus-reprehenderit-ex-molestiae',NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `playlists` VALUES (2,'Clássicos do Sertanejo','Sertanejo','http://www.marinho.com.br/animi-similique-voluptas-explicabo-error-ea-id',NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `playlists` VALUES (3,'Clássicos do Pagode','Pagode','http://beltrao.com.br/temporibus-provident-est-aliquam-enim-veritatis-architecto-quod',NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `playlists` VALUES (4,'Clássicos do Rock','Rock','https://www.galindo.com/aliquam-sequi-laudantium-quas-ullam-expedita-quia-vero',NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `playlists` VALUES (5,'Clássicos do MPB','MPB','http://www.serra.com.br/enim-expedita-asperiores-soluta-fugit-dolore-quasi',NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `playlists` VALUES (6,'Clássicos do Metal','Metal','http://dearruda.org/',NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
 /*!40000 ALTER TABLE `playlists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -429,10 +375,11 @@ CREATE TABLE `produtos` (
   `categoria` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alcoolico` tinyint(1) NOT NULL DEFAULT '0',
   `estoque` int NOT NULL DEFAULT '0',
+  `imagem` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -441,14 +388,15 @@ CREATE TABLE `produtos` (
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-INSERT INTO `produtos` VALUES (1,'Suco natural',28.53,'Bebida',0,79,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `produtos` VALUES (2,'Porção de pastel',40.39,'Comida',0,26,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `produtos` VALUES (3,'Hambúrguer',25.23,'Comida',0,47,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `produtos` VALUES (4,'Caipirinha',24.80,'Bebida',1,83,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `produtos` VALUES (5,'Porção de batata frita',37.66,'Comida',0,32,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `produtos` VALUES (6,'Margarita',34.95,'Bebida',1,12,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `produtos` VALUES (7,'Cerveja',9.37,'Bebida',1,69,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `produtos` VALUES (8,'Refrigerante',24.66,'Bebida',0,30,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `produtos` VALUES (1,'Suco natural',28.53,'Bebida',0,79,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `produtos` VALUES (2,'Porção de pastel',40.39,'Comida',0,26,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `produtos` VALUES (3,'Hambúrguer',25.23,'Comida',0,47,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `produtos` VALUES (4,'Caipirinha',24.80,'Bebida',1,83,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `produtos` VALUES (5,'Porção de batata frita',37.66,'Comida',0,32,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `produtos` VALUES (6,'Margarita',34.95,'Bebida',1,12,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `produtos` VALUES (7,'Cerveja',9.37,'Bebida',1,69,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `produtos` VALUES (8,'Refrigerante',24.66,'Bebida',0,30,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `produtos` VALUES (11,'Coca cola de café',0.05,'Bebida',0,3,NULL,'2026-11-06 22:53:53','2026-11-06 22:53:53');
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -464,7 +412,6 @@ CREATE TABLE `reservas` (
   `sala_id` bigint unsigned NOT NULL,
   `usuario_id` bigint unsigned NOT NULL,
   `playlist_id` bigint unsigned DEFAULT NULL,
-  `playlist_link` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `data_reserva` date NOT NULL,
   `horario_inicio` time NOT NULL,
   `horario_fim` time NOT NULL,
@@ -476,13 +423,13 @@ CREATE TABLE `reservas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `reservas_playlist_id_unique` (`playlist_id`),
   KEY `reservas_sala_id_foreign` (`sala_id`),
   KEY `reservas_usuario_id_foreign` (`usuario_id`),
-  KEY `reservas_playlist_id_foreign` (`playlist_id`),
   CONSTRAINT `reservas_playlist_id_foreign` FOREIGN KEY (`playlist_id`) REFERENCES `playlists` (`id`),
   CONSTRAINT `reservas_sala_id_foreign` FOREIGN KEY (`sala_id`) REFERENCES `salas` (`id`),
   CONSTRAINT `reservas_usuario_id_foreign` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -491,12 +438,12 @@ CREATE TABLE `reservas` (
 
 LOCK TABLES `reservas` WRITE;
 /*!40000 ALTER TABLE `reservas` DISABLE KEYS */;
-INSERT INTO `reservas` VALUES (1,3,5,2,NULL,'2026-12-29','14:00:00','17:00:00',0,5,'Confirmada',NULL,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `reservas` VALUES (2,2,6,NULL,'http://www.branco.org/magni-enim-nobis-autem-minima-id.html','2026-11-17','14:00:00','15:00:00',0,4,'Cancelada','2026-11-05 17:07:26','Imprevisto do cliente','2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `reservas` VALUES (3,4,5,1,NULL,'2026-12-12','14:00:00','17:00:00',1,2,'Cancelada','2026-11-05 17:07:26','Imprevisto do cliente','2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `reservas` VALUES (4,4,1,4,NULL,'2026-12-25','15:00:00','17:00:00',1,4,'Pendente',NULL,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `reservas` VALUES (5,5,1,1,NULL,'2026-11-16','16:00:00','17:00:00',1,18,'Confirmada',NULL,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
-INSERT INTO `reservas` VALUES (6,1,5,NULL,'http://bezerra.net.br/ut-dolorum-fugiat-sequi-non-excepturi-cupiditate','2026-11-16','19:00:00','21:00:00',0,9,'Cancelada','2026-11-05 17:07:26','Imprevisto do cliente','2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `reservas` VALUES (1,3,5,2,'2026-12-29','14:00:00','17:00:00',0,5,'Confirmada',NULL,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `reservas` VALUES (2,2,6,3,'2026-11-17','14:00:00','15:00:00',0,4,'Cancelada','2026-11-05 17:07:26','Imprevisto do cliente','2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `reservas` VALUES (3,4,5,1,'2026-12-12','14:00:00','17:00:00',1,2,'Cancelada','2026-11-05 17:07:26','Imprevisto do cliente','2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `reservas` VALUES (4,4,1,4,'2026-12-25','15:00:00','17:00:00',1,4,'Pendente',NULL,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `reservas` VALUES (5,5,1,5,'2026-11-16','16:00:00','17:00:00',1,18,'Confirmada',NULL,NULL,'2026-11-05 20:07:26','2026-11-05 20:07:26');
+INSERT INTO `reservas` VALUES (6,1,5,6,'2026-11-16','19:00:00','21:00:00',0,9,'Cancelada','2026-11-05 17:07:26','Imprevisto do cliente','2026-11-05 20:07:26','2026-11-05 20:07:26');
 /*!40000 ALTER TABLE `reservas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -532,35 +479,6 @@ INSERT INTO `salas` VALUES (4,'Pequena',5,80.00,'Ocupada','2026-11-05 20:07:26',
 INSERT INTO `salas` VALUES (5,'Grande',25,250.00,'Manutenção','2026-11-05 20:07:26','2026-11-05 20:07:26');
 INSERT INTO `salas` VALUES (6,'Grande',25,250.00,'Manutenção','2026-11-05 20:07:26','2026-11-05 20:07:26');
 /*!40000 ALTER TABLE `salas` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sessions`
---
-
-DROP TABLE IF EXISTS `sessions`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint unsigned DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_activity` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `sessions_user_id_index` (`user_id`),
-  KEY `sessions_last_activity_index` (`last_activity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sessions`
---
-
-LOCK TABLES `sessions` WRITE;
-/*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -615,7 +533,7 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `usuarios_cpf_unique` (`cpf`),
   UNIQUE KEY `usuarios_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -642,4 +560,84 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-05 14:07:28
+-- Dump completed on 2026-11-06 17:01:11
+
+-- MySQL dump 10.13  Distrib 8.4.3, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: db_karaoke
+-- ------------------------------------------------------
+-- Server version	8.4.3
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint unsigned DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `sessions_user_id_index` (`user_id`),
+  KEY `sessions_last_activity_index` (`last_activity`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cache`
+--
+
+DROP TABLE IF EXISTS `cache`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` bigint NOT NULL,
+  PRIMARY KEY (`key`),
+  KEY `cache_expiration_index` (`expiration`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cache_locks`
+--
+
+DROP TABLE IF EXISTS `cache_locks`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` bigint NOT NULL,
+  PRIMARY KEY (`key`),
+  KEY `cache_locks_expiration_index` (`expiration`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-11-06 17:01:11

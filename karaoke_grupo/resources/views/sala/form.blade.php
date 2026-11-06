@@ -61,8 +61,8 @@
                 </div>
 
                 <div class="d-flex justify-content-center gap-3 mt-4">
-                    <a href="{{ url('sala') }}" class="btn btn-roxo">Voltar</a>
-                    <button type="submit" class="btn btn-amarelo">Salvar</button>
+                    <a href="{{ url('sala') }}" class="btn btn-indigo">Voltar</a>
+                    <button type="submit" class="btn btn-violeta">Salvar</button>
                 </div>
             </form>
         </div>

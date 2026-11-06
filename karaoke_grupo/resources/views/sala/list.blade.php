@@ -22,14 +22,14 @@
                         <input type="text" name="valor" id="valor" placeholder="Pesquisar..." class="form-control">
                     </div>
                     <div class="col-12 col-md-4 d-flex gap-2">
-                        <button type="submit" class="btn btn-roxo">Buscar</button>
-                        <a href="{{ url('sala/create') }}" class="btn btn-amarelo">Novo</a>
+                        <button type="submit" class="btn btn-violeta">Buscar</button>
+                        <a href="{{ url('sala/create') }}" class="btn btn-indigo">Novo</a>
                     </div>
                 </div>
             </form>
 
             <div class="table-responsive mt-4">
-                <table class="table table-dark table-striped table-hover align-middle mb-0">
+                <table class="table table-striped table-hover align-middle mb-0">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -50,12 +50,12 @@
                                 <td>{{ $item->status }}</td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a class='btn btn-amarelo btn-sm' title='Editar'
+                                        <a class='btn btn-indigo btn-sm' title='Editar'
                                             href="{{ route('sala.edit', $item->id) }}">Editar</a>
                                         <form action="{{ route('sala.destroy', $item->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class='btn btn-roxo btn-sm' title='Excluir'
+                                            <button type="submit" class='btn btn-violeta btn-sm' title='Excluir'
                                                 onclick="return confirm('Deseja Excluir?')">Deletar</button>
                                         </form>
                                     </div>

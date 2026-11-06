@@ -14,6 +14,21 @@
         <li class="nav-item">
           <a class="nav-link {{ request()->is('sala*') ? 'active' : '' }}" href="{{ url('sala') }}">Salas</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('reserva*') ? 'active' : '' }}" href="{{ url('reserva') }}">Reservas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('playlist*') ? 'active' : '' }}" href="{{ url('playlist') }}">Playlists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('produto*') ? 'active' : '' }}" href="{{ url('produto') }}">Produtos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('compra*') ? 'active' : '' }}" href="{{ url('compra') }}">Compras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ request()->is('usuario*') ? 'active' : '' }}" href="{{ url('usuario') }}">Usuários</a>
+        </li>
       </ul>
     </div>
   </div>
