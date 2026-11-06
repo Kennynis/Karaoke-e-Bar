@@ -1,2 +1,3 @@
-# devsis_2
-Repositório atualizado do projeto dev sis 1
+# Projeto de Desenvolvimento de Sistemas II
+
+Nosso projeto tem como objetivo simular um sistema completo para um Karaokê e Bar 
