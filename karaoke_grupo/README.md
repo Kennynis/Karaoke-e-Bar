@@ -2,7 +2,7 @@
 
 Sistema web para gerenciar reservas de salas, produtos e vendas do Karaokê & Bar.
 
-Tem os CRUDs de Salas, Reservas, Playlists, Produtos, Compras e Usuários.
+Até agora tem o CRUD de Salas e as tabelas do banco de dados das outras partes do sistema.
 
 ## O que precisa ter instalado
 - PHP 8.3 ou mais novo
@@ -28,13 +28,10 @@ Se o terminal perguntar se quer criar o banco, responder `yes`.
 
 Se o seu MySQL tiver senha, colocar ela em `DB_PASSWORD` no arquivo .env.
 
-**5. Criar o link da pasta de imagens**
-`php artisan storage:link`
-
-**6. Iniciar o sistema**
+**5. Iniciar o sistema**
 `php artisan serve`
 
-**7. Acessar o sistema**
+**6. Acessar o sistema**
 `http://localhost:8000/`
 
 ## Banco de dados

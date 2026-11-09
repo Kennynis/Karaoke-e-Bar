@@ -20,11 +20,13 @@ class ReservaFactory extends Factory
         $inicio = fake()->numberBetween(14, 20);
         $fim = $inicio + fake()->numberBetween(1, 3);
         $status = fake()->randomElement(['Pendente', 'Confirmada', 'Cancelada']);
+        $playlistPronta = fake()->boolean();
 
         return [
             'sala_id' => $sala->id,
             'usuario_id' => (Usuario::All()->random())->id,
-            'playlist_id' => (Playlist::doesntHave('reserva')->get()->random())->id,
+            'playlist_id' => $playlistPronta ? (Playlist::All()->random())->id : null,
+            'playlist_link' => $playlistPronta ? null : fake()->url(),
             'data_reserva' => fake()->dateTimeBetween('+1 day', '+2 months')->format('Y-m-d'),
             'horario_inicio' => sprintf('%02d:00:00', $inicio),
             'horario_fim' => sprintf('%02d:00:00', $fim),

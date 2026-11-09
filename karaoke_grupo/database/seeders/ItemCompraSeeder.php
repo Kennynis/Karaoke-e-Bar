@@ -22,7 +22,6 @@ class ItemCompraSeeder extends Seeder
                     'compra_id' => $compra->id,
                     'produto_id' => $produto->id,
                 ]);
-                $produto->decrement('estoque', $item->quantidade);
                 $total += $produto->preco * $item->quantidade;
             }
 

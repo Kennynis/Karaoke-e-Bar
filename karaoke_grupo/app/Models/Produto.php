@@ -16,7 +16,6 @@ class Produto extends Model
         'categoria',
         'alcoolico',
         'estoque',
-        'imagem',
     ];
 
     protected $casts = [

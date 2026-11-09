@@ -14,11 +14,10 @@ class Playlist extends Model
         'nome',
         'genero',
         'link',
-        'capa',
     ];
 
-    public function reserva()
+    public function reservas()
     {
-        return $this->hasOne(Reserva::class);
+        return $this->hasMany(Reserva::class);
     }
 }

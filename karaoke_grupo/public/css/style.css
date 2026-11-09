@@ -1,18 +1,21 @@
 :root {
-    --indigo: #241654;
-    --violeta: #8b5cf6;
-    --lavanda: #f3eeff;
+    --roxo: #63078a;
+    --roxo-escuro: #4c0569;
+    --roxo-claro: #a855f7;
+    --amarelo: #ffcf00;
+    --cinza: #666666;
+    --cinza-claro: #d9d9d9;
 }
 
 body {
-    background-color: var(--indigo);
-    color: var(--lavanda);
+    background-color: #000;
+    color: #fff;
     font-family: 'Bitter', Georgia, serif;
 }
 
 /* cabecalho */
 .topo {
-    background-color: var(--lavanda);
+    background-color: #fff;
 }
 
 .topo img {
@@ -20,16 +23,16 @@ body {
 }
 
 .topo .nav-link {
-    color: var(--indigo);
-    font-size: 1.125rem;
+    color: #1a1a1a;
+    font-size: 1.25rem;
     font-weight: 500;
-    padding-left: 0.875rem !important;
-    padding-right: 0.875rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
 }
 
 .topo .nav-link:hover,
 .topo .nav-link.active {
-    color: var(--violeta);
+    color: var(--roxo);
 }
 
 /* titulos */
@@ -37,12 +40,12 @@ body {
     font-size: 2.75rem;
     font-weight: 700;
     line-height: 1.1;
-    color: var(--lavanda);
+    color: var(--roxo-claro);
 }
 
 .titulo span {
     display: block;
-    color: var(--violeta);
+    color: var(--amarelo);
     text-transform: uppercase;
 }
 
@@ -52,20 +55,19 @@ body {
 }
 
 .chamada span {
-    color: var(--violeta);
+    color: var(--amarelo);
 }
 
 /* cartao */
 .cartao {
-    background-color: var(--lavanda);
+    background-color: var(--cinza);
     border-radius: 6px;
-    color: var(--indigo);
     overflow: hidden;
 }
 
 .cartao-topo {
-    background-color: var(--violeta);
-    color: #fff;
+    background-color: var(--amarelo);
+    color: var(--roxo);
     font-size: 1.25rem;
     font-weight: 600;
     padding: 0.75rem 1.5rem;
@@ -78,104 +80,51 @@ body {
 /* formulario */
 .form-control,
 .form-select {
-    background-color: #fff;
-    border: 1px solid var(--violeta);
+    background-color: var(--cinza-claro);
+    border: none;
     border-radius: 8px;
-    color: var(--indigo);
 }
 
 .form-control:focus,
 .form-select:focus {
-    border-color: var(--violeta);
-    box-shadow: 0 0 0 3px var(--violeta);
-}
-
-.form-check-input {
-    border-color: var(--violeta);
-}
-
-.form-check-input:checked {
-    background-color: var(--violeta);
-    border-color: var(--violeta);
-}
-
-.campo-quantidade {
-    min-width: 90px;
-    width: 110px;
-}
-
-/* tabela */
-.table {
-    --bs-table-bg: #fff;
-    --bs-table-color: var(--indigo);
-    --bs-table-striped-bg: var(--lavanda);
-    --bs-table-striped-color: var(--indigo);
-    --bs-table-hover-bg: var(--lavanda);
-    --bs-table-hover-color: var(--indigo);
-}
-
-.table thead th {
-    background-color: var(--indigo);
-    color: var(--lavanda);
-}
-
-.table a:not(.btn) {
-    color: var(--indigo);
-    font-weight: 600;
-}
-
-/* imagens */
-.miniatura {
-    border-radius: 8px;
-    height: 56px;
-    object-fit: cover;
-    width: 56px;
-}
-
-.imagem-form {
-    border-radius: 8px;
-    max-height: 140px;
-    max-width: 100%;
-}
-
-.sem-imagem {
-    font-size: 0.875rem;
-    white-space: nowrap;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px var(--amarelo);
 }
 
 /* botoes */
-.btn-violeta,
-.btn-indigo {
+.btn-amarelo,
+.btn-roxo {
     border: none;
     border-radius: 50rem;
-    color: #fff;
     font-weight: 600;
     padding: 0.45rem 1.5rem;
 }
 
-.btn-violeta {
-    background-color: var(--violeta);
+.btn-amarelo {
+    background-color: var(--amarelo);
+    color: #1a1a1a;
 }
 
-.btn-indigo {
-    background-color: var(--indigo);
+.btn-amarelo:hover,
+.btn-amarelo:focus {
+    background-color: #e6ba00;
+    color: #1a1a1a;
 }
 
-.btn-violeta:hover,
-.btn-violeta:focus {
-    background-color: var(--indigo);
+.btn-roxo {
+    background-color: var(--roxo);
     color: #fff;
 }
 
-.btn-indigo:hover,
-.btn-indigo:focus {
-    background-color: var(--violeta);
+.btn-roxo:hover,
+.btn-roxo:focus {
+    background-color: var(--roxo-escuro);
     color: #fff;
 }
 
 /* rodape */
 .rodape {
-    background-color: var(--violeta);
+    background-color: var(--roxo);
 }
 
 .rodape a {
@@ -184,12 +133,11 @@ body {
 }
 
 .rodape a:hover {
-    color: var(--indigo);
+    color: var(--amarelo);
 }
 
 .rodape-copia {
-    background-color: var(--lavanda);
-    color: var(--indigo);
+    background-color: var(--roxo-escuro);
     font-size: 0.875rem;
     padding: 0.5rem;
 }
